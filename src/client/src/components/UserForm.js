@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import $ from "jquery";
 import { CForm, CFormInput, CFormLabel, CButton } from "@coreui/react";
 
-const BASE_URL = "http://localhost:3000";
 
 const UserForm = ({ selectedUser, onFormSubmit, onReset, onSuccess }) => {
   const [formData, setFormData] = useState({
@@ -45,7 +44,7 @@ const UserForm = ({ selectedUser, onFormSubmit, onReset, onSuccess }) => {
 
   const insertData = () => {
     $.ajax({
-      url: `${BASE_URL}/api/users/`,
+      url: `/api/users/`,
       type: "POST",
       data: formData,
       success: () => {
@@ -64,7 +63,7 @@ const UserForm = ({ selectedUser, onFormSubmit, onReset, onSuccess }) => {
   const updateData = () => {
     console.log("selected user", selectedUser);
     $.ajax({
-      url: `${BASE_URL}/api/users/${selectedUser.id}`,
+      url: `/api/users/${selectedUser.id}`,
       type: "PUT",
       data: formData,
       success: () => {

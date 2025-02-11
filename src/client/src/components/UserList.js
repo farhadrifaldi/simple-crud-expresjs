@@ -10,29 +10,28 @@ import {
   CButton,
 } from "@coreui/react";
 
-const BASE_URL = "http://localhost:3000";
-
 const UserList = ({ onEdit, refresh }) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     // fetchUsers list in here
     $.ajax({
-      url: `${BASE_URL}/api/users/`,
+      url: `/api/users/`,
       type: "GET",
       success: (data) => {
         setUsers(data);
-        console.log('ini users', users)
+        console.log("ini users", users);
       },
       error: (xhr, status, error) => {
         console.error("Error:", error);
       },
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh]); // Fetch data when `refresh` prop changes
 
   const handleDelete = (id) => {
     $.ajax({
-      url: `${BASE_URL}/api/users/${id}`,
+      url: `/api/users/${id}`,
       type: "DELETE",
       success: () => {
         setUsers(users.filter((user) => user.id !== id));
